@@ -1,0 +1,152 @@
+.page-onboarding {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    margin-top: 29px;
+}
+
+.avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.avatar-add {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--linear-color);
+    border-radius: 50%;
+}
+
+.avatar-add::before,
+.avatar-add::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+}
+
+/* Điều chỉnh phần ngang của dấu cộng */
+.avatar-add::before {
+  width: 15px; /* Giảm chiều ngang xuống 15px */
+  height: 2px; /* Độ dày của thanh ngang */
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+/* Điều chỉnh phần dọc của dấu cộng */
+.avatar-add::after {
+  width: 2px; /* Độ dày của thanh dọc */
+  height: 15px; /* Giảm chiều cao xuống 15px */
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.non-avatar-img {
+    background: var(--gray-color);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-color);
+    object-fit: cover;
+    object-position: center; /* Căn giữa ảnh trong phần tử chứa */       
+}
+
+.avatar input[type="file"] {
+   display: none; 
+}
+
+.onboarding-input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    margin-top: 67px;
+}
+
+.onboarding-input-box {
+    width: 280px;
+    height: 100%;
+}
+
+.onboarding-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.onboarding-form div:first-child {
+    flex: 1;
+}
+
+.onboarding-input {
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--black-color);
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.onboarding-input + .onboarding-input {
+    margin-top: 32px;
+}
+
+.onboarding-input input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: var(--black-color);
+    outline: none;
+    font-size: 16px;
+}
+
+.onboarding-input input::placeholder {
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 400;
+}
+
+.onboarding-input-button {
+    margin-bottom: 89px;
+    background-color: var(--gray-color);
+    border: none;
+    border-radius: 25px;
+    color: var(--white-color);
+}
+
+.onboarding-input-button:hover {
+    background: var(--linear-color);
+}
+
+.onboarding-input-button {
+    min-width: 280px;
+    height: 43px;
+}
+
+.to-sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    color: var(--white-color);
+    text-decoration: none;
+}

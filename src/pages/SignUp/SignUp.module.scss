@@ -1,0 +1,218 @@
+/* Các lớp style cho SVG */
+.st0 {
+    fill: #1a73e8;
+}
+.st1 {
+    fill: #ea4335;
+}
+.st2 {
+    fill: #4285f4;
+}
+.st3 {
+    fill: #fbbc04;
+}
+.st4 {
+    fill: #34a853;
+}
+.st5 {
+    fill: #4caf50;
+}
+.st6 {
+    fill: #1e88e5;
+}
+.st7 {
+    fill: #e53935;
+}
+.st8 {
+    fill: #c62828;
+}
+.st9 {
+    fill: #fbc02d;
+}
+.st10 {
+    fill: #1565c0;
+}
+.st11 {
+    fill: #2e7d32;
+}
+.st12 {
+    fill: #f6b704;
+}
+.st13 {
+    fill: #e54335;
+}
+.st14 {
+    fill: #4280ef;
+}
+.st15 {
+    fill: #34a353;
+}
+/* Nếu bạn có các lớp khác (st16, st17, …) thì có thể định nghĩa thêm ở đây */
+
+.sign-up-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.sign-up-choice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-title {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-title h1 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.sign-up-title p {
+    color: var(--gray-text-color);
+}
+
+.sign-up-button-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+    min-height: 43px;
+    border-radius: 25px;
+}
+
+.sign-up-button-item--box-shadow {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sign-up-button-item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sign-up-button-item + .sign-up-button-item {
+    margin-top: 40px;
+}
+
+.sign-up-button-item__svg {
+    position: absolute;
+    top: 7px;
+    right: 230px;
+    bottom: 7px;
+    left: 22px;
+}
+
+.sign-up-button-item p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.sign-up-button-item--meta {
+    background-color: var(--primary-color);
+}
+
+.sign-up-button-item--meta .sign-up-button-item__title p {
+    color: var(--white-color);
+}
+
+
+.sign-up-input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    background: linear-gradient(
+        to bottom right,
+        #fff4ca,
+        #d9def8,
+        #b7c2f6,
+        #8492d1
+    );
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: 40px;
+    padding-top: 49px;
+}
+
+.sign-up-input-box {
+    width: 280px;
+}
+
+.sign-up-input {
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--white-color);
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.sign-up-input + .sign-up-input {
+    margin-top: 32px;
+}
+
+.sign-up-input input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: var(--white-color);
+    outline: none;
+}
+
+.sign-up-input input::placeholder {
+    color: var(--white-color); /* Màu placeholder */
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 400;
+}
+
+.sign-up-input a {
+    position: relative;
+    top: 34px;
+    right: 6px;
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+    width: 150px;
+}
+
+.sign-up-input-button {
+    margin-top: 40px;
+    background-color: var(--gray-color);
+    border: none;
+    border-radius: 25px;
+    color: var(--white-color);
+}
+
+.sign-up-input-button:hover {
+    background-color: var(--black-color);
+}
+
+.sign-up-input-button {
+    min-width: 280px;
+    height: 43px;
+}
+
+.to-sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    color: var(--white-color);
+    text-decoration: none;
+}
