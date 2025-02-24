@@ -1,0 +1,27 @@
+.page-comic-create {
+    padding: 40px;
+}
+
+.category-container {
+    display: flex;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.category-item {
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s linear;
+}
+
+.category-item + .category-item {
+    margin-left: 8px;
+}
+
+.category-item--selected {
+    color: var(--white-color);
+    background: var(--primary-color);
+}
