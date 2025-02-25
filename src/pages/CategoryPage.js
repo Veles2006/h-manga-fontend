@@ -9,9 +9,10 @@ function CategoryPage() {
             .then((response) => response.json())
             .then((data) => {
                 setCategories(data);  // Lưu dữ liệu vào state
-                console.log(data);  // In dữ liệu ra console
+                console.log(data.length);  // In dữ liệu ra console
             })
             .catch((error) => console.error('Error:', error));
+        
     }, []);
 
     return (

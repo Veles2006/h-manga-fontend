@@ -145,7 +145,7 @@ $primary-color: #92b1f5;
 
 .bar-item {
     line-height: 52px;
-    
+
     &:hover {
         background-color: $primary-color;
     }
@@ -161,4 +161,45 @@ $primary-color: #92b1f5;
 
 .bar-item__link svg {
     margin-left: 4px;
+}
+
+.header-bottom {
+    position: relative;
+}
+
+.book-tags,
+.ranking-tags {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white-color);
+    padding: 22px 0;
+    padding-left: 40px;
+}
+
+.categories-list,
+.ranking-list {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* Tạo 8 cột đều */
+    gap: 20px;
+    padding: 0;
+}
+
+.categories-item,
+.ranking-item {
+    display: flex;
+    justify-content: start;
+}
+
+.categories-item a,
+.ranking-item a {
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--body-color);
+
+    &:hover {
+        color: var(--primary-color);
+    }
 }

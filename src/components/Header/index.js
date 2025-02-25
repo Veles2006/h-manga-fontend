@@ -1,3 +1,4 @@
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,6 +9,7 @@ import {
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './Header.module.scss';
+import { useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 
 const barValues = [
@@ -42,7 +44,49 @@ const barValues = [
     },
 ];
 
+const rankingValues = [
+    'Top Ngày',
+    'Top Tuần',
+    'Top Tháng',
+    'Yêu Thích',
+    'Mới cập nhật',
+    'Truyện mới',
+    'Truyện full',
+    'Truyện ngẫu nhiên',
+];
+
 function Header() {
+    const [categories, setCategories] = useState([]);
+    const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
+    const [showRankingMenu, setShowRankingMenu] = useState(false);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/categories')
+            .then((response) => {
+                setCategories(response.data);
+            })
+            .catch((error) => {
+                console.error('Có lỗi xảy ra:', error);
+            });
+    }, []);
+
+    const handleMouseEnter = (value) => {
+        if (value.name === 'Thể loại') {
+            setShowCategoriesMenu(true);
+        } else {
+            setShowRankingMenu(true);
+        }
+    };
+
+    const handleMouseLeave = (value) => {
+        if (value.name === 'Thể loại') {
+            setShowCategoriesMenu(false);
+        } else {
+            setShowRankingMenu(false);
+        }
+    };
+
     return (
         <div className={cx('header')}>
             <div className={cx('header-top')}>
@@ -103,18 +147,134 @@ function Header() {
                 <div className={cx('header-div-middle')}>
                     <ul className={cx('bar')}>
                         {barValues.map((value, index) => {
-                            return (
-                                <li key={index} className={cx('bar-item')}>
-                                    <a className={cx('bar-item__link')} href='/'>
-                                        {value.name}
-                                        {value.icon ? (
-                                            <FontAwesomeIcon
-                                                icon={value.icon}
-                                            />
-                                        ) : null}
-                                    </a>
-                                </li>
-                            );
+                            // Nếu là mục "Thể loại", bọc nó và dropdown vào container
+                            if (value.name === 'Thể loại') {
+                                return (
+                                    <div
+                                        key={index}
+                                        onMouseEnter={() => {
+                                            handleMouseEnter(value);
+                                        }}
+                                        onMouseLeave={() => {
+                                            handleMouseLeave(value);
+                                        }}
+                                    >
+                                        <li className={cx('bar-item')}>
+                                            <a
+                                                className={cx('bar-item__link')}
+                                                href="/"
+                                            >
+                                                {value.name}
+                                                {value.icon ? (
+                                                    <FontAwesomeIcon
+                                                        icon={value.icon}
+                                                    />
+                                                ) : null}
+                                            </a>
+                                        </li>
+                                        <div
+                                            className={cx('book-tags')}
+                                            style={{
+                                                display: showCategoriesMenu
+                                                    ? 'block'
+                                                    : 'none',
+                                            }}
+                                        >
+                                            <ul
+                                                className={cx(
+                                                    'categories-list'
+                                                )}
+                                            >
+                                                {categories.map((cat, idx) => (
+                                                    <li
+                                                        key={idx}
+                                                        className={cx(
+                                                            'categories-item'
+                                                        )}
+                                                    >
+                                                        <a href="/">
+                                                            {cat.title}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                );
+                            } else if (value.name === 'Xếp hạng') {
+                                return (
+                                    <div
+                                        key={index}
+                                        onMouseEnter={() => {
+                                            handleMouseEnter(value);
+                                        }}
+                                        onMouseLeave={() => {
+                                            handleMouseLeave(value);
+                                        }}
+                                    >
+                                        <li className={cx('bar-item')}>
+                                            <a
+                                                className={cx('bar-item__link')}
+                                                href="/"
+                                            >
+                                                {value.name}
+                                                {value.icon ? (
+                                                    <FontAwesomeIcon
+                                                        icon={value.icon}
+                                                    />
+                                                ) : null}
+                                            </a>
+                                        </li>
+                                        <div
+                                            className={cx('ranking-tags')}
+                                            style={{
+                                                display: showRankingMenu
+                                                    ? 'block'
+                                                    : 'none',
+                                            }}
+                                        >
+                                            <ul
+                                                className={cx(
+                                                    'ranking-list'
+                                                )}
+                                            >
+                                                {rankingValues.map((rankingValue, idx) => (
+                                                    <li
+                                                        key={idx}
+                                                        className={cx(
+                                                            'ranking-item'
+                                                        )}
+                                                    >
+                                                        <a href="/">
+                                                            {rankingValue}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                );
+                            } else {
+                                return (
+                                    <li
+                                        key={index}
+                                        tabIndex={index}
+                                        className={cx('bar-item')}
+                                    >
+                                        <a
+                                            className={cx('bar-item__link')}
+                                            href="/"
+                                        >
+                                            {value.name}
+                                            {value.icon ? (
+                                                <FontAwesomeIcon
+                                                    icon={value.icon}
+                                                />
+                                            ) : null}
+                                        </a>
+                                    </li>
+                                );
+                            }
                         })}
                     </ul>
                 </div>
