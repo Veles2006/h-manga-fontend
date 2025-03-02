@@ -1,0 +1,90 @@
+.comic-carousel {
+    position: relative;
+    margin-top: 10px;
+}
+
+.comic-thumbnail img {
+    width: 170px;
+    border-radius: 6px;
+}
+
+.comic-carousel__title {
+    display: flex;
+    align-items: center;
+    color: var(--contrast-color);
+    font-size: 2rem;
+    padding: 10px 0;
+}
+
+.comic-carousel__title h3 {
+    margin: 0;
+    font-size: 2rem;
+    margin-left: 8px;
+}
+
+.comic-carousel__title svg {
+    font-size: 1.8rem;
+}
+
+.comic-title {
+    display: flex;
+    width: 170px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.comic-title h3 {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Số dòng tối đa */
+    overflow: hidden;
+}
+
+.comic-title p {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  color: white;
+  border-radius: 50%; /* Bo tròn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Vị trí của nút */
+.swiper-button-prev {
+  left: -2%; /* Đưa nút ra ngoài một chút */
+}
+
+.swiper-button-next {
+  right: -2%;
+}
+
+/* Ẩn nút khi không cần thiết */
+.swiper-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -20,7 +20,8 @@ function App() {
                     {/* Layout chính chứa các trang chính */}
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<Home />} /> {/* Trang chủ */}
-                        <Route path="detail" element={<Detail />} />{' '}
+                        <Route path='comics/page/:page'  />
+                        <Route path="detail" element={<Detail />} />
                         {/* Trang chi tiết */}
                     </Route>
                     <Route path="login" element={<Login />} />

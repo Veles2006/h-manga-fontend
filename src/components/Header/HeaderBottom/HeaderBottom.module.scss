@@ -1,0 +1,43 @@
+$primary-color: #92b1f5;
+
+.header-div-middle {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.header-bottom {
+    position: relative;
+    background: var(--linear-color);
+}
+
+.bar {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.bar-item {
+    line-height: 52px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary-color;
+    }
+}
+
+.bar-item p {
+    margin: 0;
+}
+
+.bar-item__link {
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+.bar-item__link svg {
+    margin-left: 4px;
+}

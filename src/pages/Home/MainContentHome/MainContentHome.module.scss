@@ -1,0 +1,77 @@
+.main-content-home ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+}
+
+.comic-thumbnail img {
+    border-radius: 6px;
+    width: 180px;
+}
+
+.main-content-home__title {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+    padding: 10px 0;
+}
+
+.main-content-home__title h3 {
+    margin: 0;
+    font-size: 2rem;
+    margin-left: 8px;
+}
+
+.main-content-home__title svg {
+    font-size: 1.8rem;
+}
+
+.comic-title {
+    display: flex;
+    width: 180px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.comic-title h3 {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Số dòng tối đa */
+    overflow: hidden;
+}
+
+.comic-title p {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.next-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-page__btn {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: var(--primary-color);
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 25%);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.next-page__btn a {
+    text-decoration: none;
+    color: var(--white-color);
+}
