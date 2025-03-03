@@ -6,7 +6,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+    faChevronLeft,
+    faChevronRight,
+    faStar,
+} from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import style from './ComicCarousel.module.scss';
@@ -17,9 +21,10 @@ function ComicCarousel() {
     const [comics, setComics] = useState([]); // Khởi tạo state để lưu dữ liệu người dùng
 
     useEffect(() => {
-        axios.get('http://localhost:5000/comics/hot') // Gửi yêu cầu GET tới API
+        axios
+            .get('http://localhost:5000/comics/hot') // Gửi yêu cầu GET tới API
             .then(({ data }) => setComics(data))
-            .catch(error => console.error('Có lỗi xảy ra:', error));
+            .catch((error) => console.error('Có lỗi xảy ra:', error));
     }, []);
 
     return (
@@ -40,6 +45,28 @@ function ComicCarousel() {
                     nextEl: `.${cx('swiper-button-next')}`,
                     prevEl: `.${cx('swiper-button-prev')}`,
                 }}
+                breakpoints={{
+                    // Khi màn hình nhỏ hơn 640px
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
+                    // Khi màn hình nhỏ hơn 768px
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    // Khi màn hình nhỏ hơn 1024px
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                    // Khi màn hình lớn hơn 1200px
+                    1200: {
+                        slidesPerView: 6.5,
+                        spaceBetween: 10,
+                    },
+                }}
             >
                 {comics.map((comic, index) => (
                     <SwiperSlide
@@ -58,7 +85,7 @@ function ComicCarousel() {
             </Swiper>
 
             <div className={cx('swiper-button-next')}>
-                <FontAwesomeIcon  icon={faChevronRight}/>
+                <FontAwesomeIcon icon={faChevronRight} />
             </div>
             <div className={cx('swiper-button-prev')}>
                 <FontAwesomeIcon icon={faChevronLeft} />

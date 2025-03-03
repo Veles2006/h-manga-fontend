@@ -13,6 +13,7 @@ function Header() {
 
     useEffect(() => {
         axios.get('http://localhost:5000/categories')
+        
             .then(({ data }) => setCategories(data))
             .catch(error => console.error('Có lỗi xảy ra:', error));
     }, []);
