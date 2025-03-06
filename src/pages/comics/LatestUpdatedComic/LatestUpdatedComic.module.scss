@@ -1,0 +1,142 @@
+.latest-updated-comic {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 28px 0;
+    height: 100%;
+}
+
+.title-page {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+}
+
+.title-page svg {
+    font-size: 1.8rem;
+}
+
+.title-page h2 {
+    margin-left: 6px;
+}
+
+.filter {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1.4rem;
+    color: var(--gray-color);
+    font-weight: 300;
+}
+
+.filter__box {
+    display: flex;
+    align-content: center;
+    margin: 8px 0;
+}
+
+.filter__box__title {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.filter__box__title span {
+    text-align: center;
+    display: block; /* Đảm bảo span có thể căn giữa đúng cách */
+    width: 100%;
+}
+.filter__box__btn {
+    min-width: 80px;
+    padding: 9px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-left: 10px;
+    text-align: center;
+    &.filter__box__btn--active {
+        background: var(--primary-color);
+        color: var(--white-color);
+    }
+}
+
+.main-content {
+}
+
+.comic-list {
+}
+
+.comic-item {
+}
+
+.comic-thumbnail img {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    max-width: 180px;
+    object-fit: cover;
+}
+
+.comic-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    & h3 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1; /* Số dòng tối đa */
+        overflow: hidden;
+        margin: 8px 0;
+    }
+
+    & p {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
+
+.pagination {
+    margin: 20px 0;
+}
+
+.pagination-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.pagination-item {
+    margin: 0 4px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 150px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 1px solid #e2e2e2;
+    transition: background 0.3s ease, color 0.3s ease;
+    &.pagination-item--active {
+        background: var(--primary-color);
+    }
+    &.pagination-item--active a {
+        color: var(--white-color);
+    }
+
+    & a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: var(--black-color);
+    }
+    & img {
+        width: 1.4rem;
+        display: flex;
+    }
+}

@@ -26,6 +26,7 @@ code {
     --black-color: #424242;
     --linear-color: linear-gradient(to top left ,#fff6cb ,#6492f3, #1e5adc);
     --bg-color: #ffffff;
+    --bg-gray-color:  #ebebeb;
     --border-color: #dee2e6;
     --body-color: #212529;
 }

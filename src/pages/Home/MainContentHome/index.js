@@ -53,11 +53,9 @@ function MainContentHome() {
                 )}
             </ul>
             <div className={cx('next-page')}>
-                <button className={cx('next-page__btn')}>
-                    <Link to="/comics/page/2">
-                        Xem thêm nhiều truyện
-                    </Link>
-                </button>
+                <Link to="/comics/page/2" className={cx('next-page__btn')}>
+                    Xem thêm nhiều truyện
+                </Link>
             </div>
         </div>
     );
