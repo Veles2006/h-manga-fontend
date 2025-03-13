@@ -35,7 +35,7 @@ function LatestUpdatedComic() {
             .then(({ data }) => {
                 setComics(data.comics);
                 setTotalPages(data.totalPages);
-                updatePages(currentPage, data.totalPages)
+                updatePages(currentPage, data.totalPages);
             }) // Gán dữ liệu truyện vào state
             .catch((error) => console.error('Có lỗi xảy ra:', error));
     }, [currentPage]);
@@ -102,15 +102,29 @@ function LatestUpdatedComic() {
                                     'my-4'
                                 )}
                             >
-                                <div className={cx('comic-thumbnail')}>
-                                    <img
-                                        src={comic.coverImage}
-                                        alt={comic.title}
-                                    />
-                                </div>
+                                <Link to={`/comics/detail/${comic.slug}`}>
+                                    <div className={cx('comic-thumbnail')}>
+                                        <img
+                                            src={comic.coverImage}
+                                            alt={comic.title}
+                                        />
+                                    </div>
+                                </Link>
                                 <div className={cx('comic-title')}>
-                                    <h3>{comic.title}</h3>
-                                    <p>Số chương 1000</p>
+                                    <h3>
+                                        <Link
+                                            to={`/comics/detail/${comic.slug}`}
+                                        >
+                                            {comic.title}
+                                        </Link>
+                                    </h3>
+                                    <p>
+                                        <Link
+                                            to={`/comics/detail/${comic.slug}`}
+                                        >
+                                            Chapter {comic.lastChapterNumber}
+                                        </Link>
+                                    </p>
                                 </div>
                             </li>
                         ))
@@ -153,7 +167,9 @@ function LatestUpdatedComic() {
                     {pages.map((page) => (
                         <li
                             key={page}
-                            className={cx('pagination-item', { 'pagination-item--active': currentPage === page })}
+                            className={cx('pagination-item', {
+                                'pagination-item--active': currentPage === page,
+                            })}
                             onClick={() => handlePageChange(page)}
                         >
                             <Link to={`/comics/page/${page}`}>{page}</Link>

@@ -11,12 +11,16 @@ const cx = className.bind(styles);
 
 function MainContentHome() {
     const [comics, setComics] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         // Gửi yêu cầu GET tới API với thông tin trang (trang 1)
         axios
             .get('http://localhost:5000/comics/page/1')
-            .then(({ data }) => setComics(data.comics)) // Gán dữ liệu truyện vào state
+            .then((({ data })  => {
+                setComics(data.comics)
+                setTotalPages(data.totalPages)
+            })) // Gán dữ liệu truyện vào state
             .catch((error) => console.error('Có lỗi xảy ra:', error));
     }, []);
 
@@ -39,12 +43,25 @@ function MainContentHome() {
                                 'my-2'
                             )}
                         >
-                            <div className={cx('comic-thumbnail')}>
-                                <img src={comic.coverImage} alt={comic.title} />
-                            </div>
+                            <Link to={`/comics/detail/${comic.slug}`}>
+                                <div className={cx('comic-thumbnail')}>
+                                    <img
+                                        src={comic.coverImage}
+                                        alt={comic.title}
+                                    />
+                                </div>
+                            </Link>
                             <div className={cx('comic-title')}>
-                                <h3>{comic.title}</h3>
-                                <p>Số chương 1000</p>
+                                <h3>
+                                    <Link to={`/comics/detail/${comic.slug}`}>
+                                        {comic.title}
+                                    </Link>
+                                </h3>
+                                <p>
+                                    <Link to={`/comics/detail/${comic.slug}`}>
+                                        Chapter {comic.lastChapterNumber}
+                                    </Link>
+                                </p>
                             </div>
                         </li>
                     ))
@@ -53,7 +70,7 @@ function MainContentHome() {
                 )}
             </ul>
             <div className={cx('next-page')}>
-                <Link to="/comics/page/2" className={cx('next-page__btn')}>
+                <Link to={`/comics/page/${totalPages === 1 ? '1' : '2'}`} className={cx('next-page__btn')}>
                     Xem thêm nhiều truyện
                 </Link>
             </div>

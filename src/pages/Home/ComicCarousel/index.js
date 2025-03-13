@@ -14,6 +14,7 @@ import {
 import classNames from 'classnames/bind';
 
 import style from './ComicCarousel.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(style);
 
@@ -23,7 +24,10 @@ function ComicCarousel() {
     useEffect(() => {
         axios
             .get('http://localhost:5000/comics/hot') // Gửi yêu cầu GET tới API
-            .then(({ data }) => setComics(data))
+            .then(({ data }) => {
+                setComics(data)
+                console.log(data)
+            })
             .catch((error) => console.error('Có lỗi xảy ra:', error));
     }, []);
 
@@ -73,12 +77,22 @@ function ComicCarousel() {
                         key={index}
                         style={{ width: '170px', height: 'auto' }}
                     >
-                        <div className={cx('comic-thumbnail')}>
-                            <img src={comic.coverImage} alt={comic.title} />
-                        </div>
+                        <Link to={`/comics/detail/${comic.slug}`}>
+                            <div className={cx('comic-thumbnail')}>
+                                <img src={comic.coverImage} alt={comic.title} />
+                            </div>
+                        </Link>
                         <div className={cx('comic-title')}>
-                            <h3>{comic.title}</h3>
-                            <p>Số chương 1000</p>
+                            <h3>
+                                <Link to={`/comics/detail/${comic.slug}`}>
+                                    {comic.title}
+                                </Link>
+                            </h3>
+                            <p>
+                                <Link to={`/comics/detail/${comic.slug}`}>
+                                    Chapter {comic.lastChapterNumber}
+                                </Link>
+                            </p>
                         </div>
                     </SwiperSlide>
                 ))}

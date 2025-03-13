@@ -5,6 +5,7 @@ import Detail from "../pages/Detail";
 import ComicRoutes from "./ComicRoutes";
 import CategoryRoutes from "./CategoryRoutes";
 import AuthRoutes from "./AuthRoutes";
+import ChapterRoutes from "./ChapterRoutes";
 
 const AppRoutes = () => {
     return (
@@ -12,8 +13,8 @@ const AppRoutes = () => {
             {/* Layout chính */}
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
-                <Route path="detail" element={<Detail />} />
                 <Route path="comics/*" element={<ComicRoutes />} />
+                <Route path="chapters/*" element={<ChapterRoutes />} />
                 <Route path="categories/*" element={<CategoryRoutes />} />
             </Route>
 

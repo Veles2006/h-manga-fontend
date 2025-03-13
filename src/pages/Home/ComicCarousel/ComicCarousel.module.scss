@@ -1,6 +1,11 @@
 .comic-carousel {
     position: relative;
     margin-top: 10px;
+
+    & a {
+        text-decoration: none;
+        color: var(--black-color);
+    }
 }
 
 .comic-thumbnail img {
@@ -32,6 +37,34 @@
     flex-direction: column;
     align-items: center;
     margin-top: 8px;
+
+    & h3 {
+        margin: 0;
+    }
+
+    & h3 a {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1; /* Số dòng tối đa */
+        overflow: hidden;
+        margin: 6px 0;
+        line-height: 2.2rem;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+
+    & p a {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
 }
 
 .comic-title h3 {
@@ -50,41 +83,41 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
-  color: white;
-  border-radius: 50%; /* Bo tròn */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 24px;
-  font-weight: bold;
-  z-index: 10;
-  transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+    color: white;
+    border-radius: 50%; /* Bo tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    transition: background-color 0.3s ease;
 }
 
 /* Hiệu ứng hover */
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Vị trí của nút */
 .swiper-button-prev {
-  left: -2%; /* Đưa nút ra ngoài một chút */
+    left: -2%; /* Đưa nút ra ngoài một chút */
 }
 
 .swiper-button-next {
-  right: -2%;
+    right: -2%;
 }
 
 /* Ẩn nút khi không cần thiết */
 .swiper-button-disabled {
-  opacity: 0.5;
-  pointer-events: none;
+    opacity: 0.5;
+    pointer-events: none;
 }

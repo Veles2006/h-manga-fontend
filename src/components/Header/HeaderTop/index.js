@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
@@ -12,8 +13,10 @@ function HeaderTop() {
             <div className={cx('header-div-middle')}>
                 <div className={cx('header-top-right')}>
                     <div className={cx('header-logo')}>
-                        <img src="/img/logo-h-manga.png" alt="Logo" className={cx('header-logo__img')} />
-                        <img src="/img/h_manga_logo_final_black-removebg-preview.png" alt="Logo-title" className={cx('header-logo__title')} />
+                        <Link to='/'>
+                            <img src="/img/logo-h-manga.png" alt="Logo" className={cx('header-logo__img')} />
+                            <img src="/img/h_manga_logo_final_black-removebg-preview.png" alt="Logo-title" className={cx('header-logo__title')} />
+                        </Link>
                     </div>
                     <div className={cx('toggle-theme')}>
                         <FontAwesomeIcon icon={faLightbulb} className={cx('toggle-theme__icon')} />
