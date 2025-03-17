@@ -5,7 +5,7 @@ import CategoryCreate from "../pages/categories/CategoryCreate";
 const CategoryRoutes = () => {
     return (
         <Routes>
-            <Route path="" element={<CategoryPage />} />
+            <Route path="/" element={<CategoryPage />} />
             <Route path="create" element={<CategoryCreate />} />
         </Routes>
     );

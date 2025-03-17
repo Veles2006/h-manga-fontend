@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Breadcrumb from '../../components/Breadcrumb';
+import Comment from '../../components/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBook,
@@ -17,13 +18,10 @@ import {
     faThumbsUp,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { LoremIpsum } from 'lorem-ipsum';
 
 import styles from './Detail.module.scss';
 
 const cx = classNames.bind(styles);
-
-const lorem = new LoremIpsum();
 
 const ICONS = {
     anotherTitle: faPlus,
@@ -33,12 +31,6 @@ const ICONS = {
     follows: faHeart,
     views: faEye,
 };
-
-const MENU_ITEMS = [
-    { icon: faBook, text: 'Đọc từ đầu', class: 'menu-btn--green-bg' },
-    { icon: faHeart, text: 'Theo dõi', class: 'menu-btn--danger-bg' },
-    { icon: faThumbsUp, text: 'Thích', class: 'menu-btn--violet-bg' },
-];
 
 const COMIC_DETAILS = [
     { key: 'anotherTitle', label: 'Tên khác' },
@@ -56,47 +48,49 @@ const COMIC_DETAILS = [
 function Detail() {
     const [comic, setComic] = useState({});
     const [chapters, setChapters] = useState([]);
+    const [minNumber, setMinNumber] = useState(0);
     const { slug } = useParams();
-    const [expanded, setExpanded] = useState(false);
-    const [showMoreButton, setShowMoreButton] = useState(false);
-    const contentRef = useRef(null);
+
+    const MENU_ITEMS = [
+        {
+            icon: faBook,
+            text: 'Đọc từ đầu',
+            class: 'menu-btn--green-bg',
+            link: `/comics/detail/${slug}/${minNumber}`,
+        },
+        { icon: faHeart, text: 'Theo dõi', class: 'menu-btn--danger-bg', link: '#' },
+        { icon: faThumbsUp, text: 'Thích', class: 'menu-btn--violet-bg', link: '#' },
+    ];
 
     useEffect(() => {
-        if (contentRef.current) {
-            // Kiểm tra xem nội dung có dài hơn 5 dòng không
-            setShowMoreButton(
-                contentRef.current.scrollHeight >
-                    contentRef.current.clientHeight
-            );
-        }
-    }, []);
-
-    useEffect(() => {
-        const fetchComic = async () => {
+        const fetchData = async () => {
             try {
-                const { data } = await axios.get(
-                    `http://localhost:5000/comics/detail/${slug}`
+                const [comicRes, chaptersRes] = await Promise.all([
+                    axios.get(`http://localhost:5000/comics/detail/${slug}`),
+                    axios.get(`http://localhost:5000/chapters/${slug}`),
+                ]);
+
+                setComic(comicRes.data);
+                setChapters(chaptersRes.data);
+
+                // Tìm số chương nhỏ nhất
+                setMinNumber(
+                    chaptersRes.data.length > 0
+                        ? chaptersRes.data.reduce(
+                              (min, chap) => Math.min(min, chap.number),
+                              Infinity
+                          )
+                        : null
                 );
-                setComic(data);
             } catch (error) {
                 console.error('Có lỗi xảy ra:', error);
             }
         };
-        const fetchChapters = async () => {
-            try {
-                const { data } = await axios.get(
-                    `http://localhost:5000/chapters/${slug}`
-                );
-                setChapters(data);
-            } catch (error) {
-                console.error('Có lỗi xảy ra:', error);
-            }
-        };
-        fetchComic();
-        fetchChapters();
+
+        fetchData();
     }, [slug]);
 
-    if (!comic) return <p>Đang tải...</p>;
+    if (!comic || Object.keys(comic).length === 0) return <p>Đang tải...</p>;
 
     return (
         <div className={cx('detail-page')}>
@@ -173,7 +167,7 @@ function Detail() {
                                 {MENU_ITEMS.map((item, ind) => (
                                     <li key={ind}>
                                         <Link
-                                            to="#"
+                                            to={item.link}
                                             className={cx(
                                                 'menu-btn',
                                                 `${item.class}`
@@ -199,10 +193,17 @@ function Detail() {
                         Danh sách chương
                     </h3>
                     <div className={cx('list-chapter', 'row')}>
-                        {chapters.map((chapter, ind) => (
-                            <div className={cx('list-chapter__item')} key={ind}>
+                        {chapters.map((chapter) => (
+                            <div
+                                className={cx('list-chapter__item')}
+                                key={chapter.id}
+                            >
                                 <div className={cx('col-lg-10')}>
-                                    <Link to="#">Chương {chapter.number}</Link>
+                                    <Link
+                                        to={`/comics/detail/${slug}/${chapter.number}`}
+                                    >
+                                        Chương {chapter.number}
+                                    </Link>
                                 </div>
                                 <div className={cx('col-lg-2')}>
                                     {chapter.updatedAt}
@@ -210,212 +211,9 @@ function Detail() {
                             </div>
                         ))}
                     </div>
-                    <div className={cx('comment-container')}>
-                        <span className={cx('comment-container__title')}>
-                            <FontAwesomeIcon icon={faComments} />
-                            Bình Luận (485)
-                        </span>
-                        <div className={cx('notify-fanpage')}>
-                            {'Vào '}
-                            <Link to="#">Fanpage</Link>
-                            {' like và theo dõi để ủng hộ TruyenQQ nhé.'}
-                        </div>
-                        <div className={cx('comment-placeholder')}>
-                            hãy bình luận có văn hóa để tránh bị khóa tài khoản
-                        </div>
-                        <div className={cx('comment-list')}>
-                            <article className={cx('comment-item-wrapper')}>
-                                <div className={cx('comment-item')}>
-                                    <figure className={cx('avartar-comment')}>
-                                        <img
-                                            src="https://i.pinimg.com/736x/1f/18/53/1f1853c48f5090ddf75dd1948b939577.jpg"
-                                            alt="Linh Nhi"
-                                        />
-                                    </figure>
-                                    <div className={cx('comment-item-content')}>
-                                        <div
-                                            className={cx(
-                                                'comment-content-wrapper'
-                                            )}
-                                        >
-                                            <div
-                                                className={cx(
-                                                    'comment-content-title',
-                                                    'level_6'
-                                                )}
-                                            >
-                                                <strong>Linh Nhi</strong>
-                                                <span>Luyện Hư</span>
-                                            </div>
-                                            <div
-                                                className={cx(
-                                                    'comment-main-content'
-                                                )}
-                                            >
-                                                Hay
-                                            </div>
-                                        </div>
-                                        <div
-                                            className={cx(
-                                                'comment-item-action'
-                                            )}
-                                        >
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faThumbsUp}
-                                                />
-                                                <span>Thích</span>
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faComment}
-                                                />
-                                                <span>Trả lời</span>
-                                            </span>
-                                            <span>4 Ngày Trước</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article className={cx('comment-item-wrapper')}>
-                                <div className={cx('comment-item')}>
-                                    <figure className={cx('avartar-comment')}>
-                                        <img
-                                            src="https://i.pinimg.com/736x/1f/18/53/1f1853c48f5090ddf75dd1948b939577.jpg"
-                                            alt="Linh Nhi"
-                                        />
-                                    </figure>
-                                    <div className={cx('comment-item-content')}>
-                                        <div
-                                            className={cx(
-                                                'comment-content-wrapper'
-                                            )}
-                                        >
-                                            <div
-                                                className={cx(
-                                                    'comment-content-title',
-                                                    'level_6'
-                                                )}
-                                            >
-                                                <strong>Linh Nhi</strong>
-                                                <span>Luyện Hư</span>
-                                            </div>
-                                            <div
-                                                ref={contentRef}
-                                                className={cx(
-                                                    'comment-main-content',
-                                                    { expanded }
-                                                )}
-                                                style={
-                                                    expanded
-                                                        ? {
-                                                              WebkitLineClamp:
-                                                                  'unset',
-                                                          }
-                                                        : {}
-                                                }
-                                            >
-                                                {lorem.generateSentences(20)}
-                                            </div>
-                                            {showMoreButton && (
-                                                <div className={cx('show-more-btn-wrapper')}>
-                                                    <button
-                                                        onClick={() =>
-                                                            setExpanded(!expanded)
-                                                        }
-                                                        className={cx(
-                                                            'show-more-btn'
-                                                        )}
-                                                    >
-                                                        {expanded
-                                                            ? 'Ẩn bớt'
-                                                            : 'Xem thêm'}
-                                                    </button>
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div
-                                            className={cx(
-                                                'comment-item-action'
-                                            )}
-                                        >
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faThumbsUp}
-                                                />
-                                                <span>Thích</span>
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faComment}
-                                                />
-                                                <span>Trả lời</span>
-                                            </span>
-                                            <span>4 Ngày Trước</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article className={cx('comment-item-wrapper')}>
-                                <div className={cx('comment-item')}>
-                                    <figure className={cx('avartar-comment')}>
-                                        <img
-                                            src="https://i.pinimg.com/736x/1f/18/53/1f1853c48f5090ddf75dd1948b939577.jpg"
-                                            alt="Linh Nhi"
-                                        />
-                                    </figure>
-                                    <div className={cx('comment-item-content')}>
-                                        <div
-                                            className={cx(
-                                                'comment-content-wrapper'
-                                            )}
-                                        >
-                                            <div
-                                                className={cx(
-                                                    'comment-content-title',
-                                                    'level_6'
-                                                )}
-                                            >
-                                                <strong>Linh Nhi</strong>
-                                                <span>Luyện Hư</span>
-                                            </div>
-                                            <div
-                                                className={cx(
-                                                    'comment-main-content'
-                                                )}
-                                            >
-                                                Hay
-                                            </div>
-                                        </div>
-                                        <div
-                                            className={cx(
-                                                'comment-item-action'
-                                            )}
-                                        >
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faThumbsUp}
-                                                />
-                                                <span>Thích</span>
-                                            </span>
-                                            <span>
-                                                <FontAwesomeIcon
-                                                    icon={faComment}
-                                                />
-                                                <span>Trả lời</span>
-                                            </span>
-                                            <span>4 Ngày Trước</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div className={cx('page-redirect')}>
-                            <p className={cx('active')}>1</p>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <Comment detail={true} />
         </div>
     );
 }
