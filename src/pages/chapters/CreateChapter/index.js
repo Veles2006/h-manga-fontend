@@ -20,6 +20,8 @@ const CreateChapter = () => {
     // Xử lý khi submit form
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const API_URL = process.env.REACT_APP_API_URL;
+
 
         if (!number || images.length === 0) {
             alert("Vui lòng nhập số và chọn ít nhất một ảnh.");
@@ -38,7 +40,7 @@ const CreateChapter = () => {
 
         // Gửi lên API (dùng async/await để dễ debug)
         try {
-            const response = await fetch(`http://localhost:5000/chapters/create/${slug}`, {
+            const response = await fetch(`${API_URL}/chapters/create/${slug}`, {
                 method: "POST",
                 body: formData, // Gửi dữ liệu ảnh
             });

@@ -12,7 +12,9 @@ function Header() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/categories')
+        const API_URL = process.env.REACT_APP_API_URL;
+
+        axios.get(`${API_URL}/categories`)
         
             .then(({ data }) => setCategories(data))
             .catch(error => console.error('Có lỗi xảy ra:', error));

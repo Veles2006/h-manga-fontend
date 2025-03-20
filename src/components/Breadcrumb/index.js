@@ -18,8 +18,10 @@ const Breadcrumb = ({ title }) => {
 
     // Fetch thông tin comic từ API nếu có slug hợp lệ
     useEffect(() => {
+        const API_URL = process.env.REACT_APP_API_URL;
+
         if (slug) {
-            axios.get(`http://localhost:5000/comics/detail/${slug}`)
+        axios.get(`${API_URL}/comics/detail/${slug}`)
                 .then((response) => {
                     setComicTitle(response.data.title);
                 })

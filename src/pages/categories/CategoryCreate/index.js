@@ -21,9 +21,11 @@ function CategoryCreate() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const API_URL = process.env.REACT_APP_API_URL;
+        
 
         try {
-            const response = await axios.post('http://localhost:5000/categories/create', formData);
+            const response = await axios.post(`${API_URL}/categories/create`, formData);
             console.log('Dữ liệu đã được gửi đi: ', response.data);
             setFormData({
                 title: '',

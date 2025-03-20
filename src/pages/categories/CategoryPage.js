@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 
 function CategoryPage() {
     const [categories, setCategories] = useState([]); // Khởi tạo state để lưu dữ liệu người dùng
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories') // Gửi yêu cầu GET tới API
+        fetch(`${API_URL}/categories`) // Gửi yêu cầu GET tới API
             .then((response) => response.json())
             .then((data) => {
                 setCategories(data);  // Lưu dữ liệu vào state

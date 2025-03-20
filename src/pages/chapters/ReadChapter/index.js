@@ -17,8 +17,6 @@ import Comment from '../../../components/Comment';
 
 const cx = classNames.bind(styles);
 
-const BASE_URL = 'http://localhost:5000'; // Dễ thay đổi khi cần
-
 function ReadChapter() {
     const { slug, chapter } = useParams(); // Lấy dữ liệu từ URL
     const [story, setStory] = useState({});
@@ -29,12 +27,14 @@ function ReadChapter() {
     useEffect(() => {
         if (!slug || !chapter) return;
 
+        const API_URL = process.env.REACT_APP_API_URL;
+
         const fetchData = async () => {
             try {
                 const [storyRes, comicRes, chaptersRes] = await Promise.all([
-                    axios.get(`${BASE_URL}/chapters/${slug}/${chapter}`),
-                    axios.get(`${BASE_URL}/comics/detail/${slug}`),
-                    axios.get(`${BASE_URL}/chapters/${slug}`), // API lấy danh sách chương
+                    axios.get(`${API_URL}/chapters/${slug}/${chapter}`),
+                    axios.get(`${API_URL}/comics/detail/${slug}`),
+                    axios.get(`${API_URL}/chapters/${slug}`), // API lấy danh sách chương
                 ]);
 
                 setStory(storyRes.data);

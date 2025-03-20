@@ -22,8 +22,10 @@ function ComicCarousel() {
     const [comics, setComics] = useState([]); // Khởi tạo state để lưu dữ liệu người dùng
 
     useEffect(() => {
+        const API_URL = process.env.REACT_APP_API_URL;
+
         axios
-            .get('http://localhost:5000/comics/hot') // Gửi yêu cầu GET tới API
+            .get(`${API_URL}/comics/hot`) // Gửi yêu cầu GET tới API
             .then(({ data }) => {
                 setComics(data)
                 console.log(data)

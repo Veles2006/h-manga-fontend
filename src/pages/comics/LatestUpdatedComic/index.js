@@ -30,8 +30,10 @@ function LatestUpdatedComic() {
 
     useEffect(() => {
         // Gửi yêu cầu GET tới API với thông tin trang (trang 1)
+        const API_URL = process.env.REACT_APP_API_URL;
+
         axios
-            .get(`http://localhost:5000/comics/page/${currentPage}`)
+            .get(`${API_URL}/comics/page/${currentPage}`)
             .then(({ data }) => {
                 setComics(data.comics);
                 setTotalPages(data.totalPages);

@@ -63,11 +63,13 @@ function Detail() {
     ];
 
     useEffect(() => {
+        const API_URL = process.env.REACT_APP_API_URL;
+
         const fetchData = async () => {
             try {
                 const [comicRes, chaptersRes] = await Promise.all([
-                    axios.get(`http://localhost:5000/comics/detail/${slug}`),
-                    axios.get(`http://localhost:5000/chapters/${slug}`),
+                    axios.get(`${API_URL}/comics/detail/${slug}`),
+                    axios.get(`${API_URL}/chapters/${slug}`),
                 ]);
 
                 setComic(comicRes.data);

@@ -24,8 +24,10 @@ function ComicCreate() {
     }, []);
 
     const fetchCategories = async () => {
+        const API_URL = process.env.REACT_APP_API_URL;
+
         try {
-            const response = await fetch('http://localhost:5000/categories');
+            const response = await fetch(`${API_URL}/categories`);
             const data = await response.json();
             setCategories(data);
         } catch (err) {
