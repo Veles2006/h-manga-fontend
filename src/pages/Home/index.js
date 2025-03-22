@@ -1,6 +1,3 @@
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import className from 'classnames/bind';
 
 import style from './Home.module.scss'

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Interest.module.scss';
-import { data, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 

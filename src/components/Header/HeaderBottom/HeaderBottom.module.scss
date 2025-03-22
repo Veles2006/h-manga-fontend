@@ -1,8 +1,27 @@
 $primary-color: #92b1f5;
 
+// Định nghĩa breakpoints (Có thể thay đổi nếu cần)
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Mixin để tạo media queries nhanh chóng
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } @else if $breakpoint == tablet {
+        @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    } @else if $breakpoint == desktop {
+        @media (min-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    }
+}
+
 .header-div-middle {
-    width: 1200px;
-    margin: 0 auto;
     display: flex;
 }
 
@@ -15,6 +34,13 @@ $primary-color: #92b1f5;
     display: flex;
     margin: 0;
     padding: 0;
+
+    @include responsive(mobile) {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+    }
 }
 
 .bar-item {
@@ -40,4 +66,14 @@ $primary-color: #92b1f5;
 
 .bar-item__link svg {
     margin-left: 4px;
+}
+
+.bar-btn {
+    background: none;
+    border: none;
+}
+
+.bar-btn svg {
+    font-size: 2.8rem;
+    color: var(--white-color);
 }

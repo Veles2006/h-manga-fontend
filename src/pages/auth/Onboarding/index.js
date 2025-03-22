@@ -28,8 +28,7 @@ function Onboarding() {
                         {avatar ? (
                             <img
                                 src={avatar}
-                                e
-                                alt="Avatar image"
+                                alt="Avatar"
                                 className={cx('avatar-img')}
                             />
                         ) : (

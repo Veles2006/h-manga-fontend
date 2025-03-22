@@ -34,7 +34,7 @@ function ComicCarousel() {
     }, []);
 
     return (
-        <div className={cx('comic-carousel')}>
+        <div className={cx('comic-carousel', 'container')}>
             <div className={cx('comic-carousel__title')}>
                 <FontAwesomeIcon icon={faStar} />
                 <h3>Truyện Hay</h3>
@@ -52,27 +52,15 @@ function ComicCarousel() {
                     prevEl: `.${cx('swiper-button-prev')}`,
                 }}
                 breakpoints={{
-                    // Khi màn hình nhỏ hơn 640px
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                    },
-                    // Khi màn hình nhỏ hơn 768px
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                    },
-                    // Khi màn hình nhỏ hơn 1024px
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    },
-                    // Khi màn hình lớn hơn 1200px
-                    1200: {
-                        slidesPerView: 6.5,
-                        spaceBetween: 10,
-                    },
+                    0: { slidesPerView: 2, spaceBetween: 5 },      // Điện thoại nhỏ
+                    480: { slidesPerView: 2, spaceBetween: 5 },  // Điện thoại lớn
+                    640: { slidesPerView: 2, spaceBetween: 10 },   // Tablet nhỏ
+                    768: { slidesPerView: 4, spaceBetween: 10 },   // Tablet lớn
+                    1024: { slidesPerView: 6.5, spaceBetween: 10 },  // Laptop nhỏ
+                    1200: { slidesPerView: 6.5, spaceBetween: 10 } // PC lớn
                 }}
+                
+                
             >
                 {comics.map((comic, index) => (
                     <SwiperSlide

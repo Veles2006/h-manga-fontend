@@ -1,14 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Breadcrumb from '../../components/Breadcrumb';
 import Comment from '../../components/Comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBook,
-    faComment,
-    faComments,
     faDatabase,
     faEye,
     faHeart,

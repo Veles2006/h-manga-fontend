@@ -67,6 +67,7 @@ const Comment = ({ detail = false }) => {
         };
 
         checkShowMoreButtons();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // ✅ Chỉ chạy một lần khi component mount
 
     return (

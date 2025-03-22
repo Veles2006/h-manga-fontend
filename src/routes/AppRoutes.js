@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-import Detail from "../pages/Detail";
 import ComicRoutes from "./ComicRoutes";
 import CategoryRoutes from "./CategoryRoutes";
 import AuthRoutes from "./AuthRoutes";

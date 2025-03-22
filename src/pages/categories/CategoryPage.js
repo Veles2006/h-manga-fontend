@@ -14,7 +14,8 @@ function CategoryPage() {
             })
             .catch((error) => console.error('Error:', error));
         
-    }, []);
+        fetch(`${API_URL}/categories`) // Gửi yêu cầu GET tới API
+    }, [API_URL]);
 
     return (
         <div>

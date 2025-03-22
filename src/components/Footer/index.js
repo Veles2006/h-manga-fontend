@@ -8,7 +8,7 @@ function Footer() {
     return (
         <footer className={cx('footer')}>
             <div className={cx('div-middle')}>
-                <div className={cx('left-footer')}>
+                <div className={cx('left-footer', 'col-lg-6', 'col-md-12', 'col-sm-12')}>
                     <div className={cx('left-footer-logo')}>
                         <img
                             src="/img/logo-h-manga.png"
@@ -35,8 +35,8 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className={cx('right-footer')}>
-                    <ul className={cx('link-list')}>
+                <div className={cx('right-footer', 'col-lg-6', 'col-md-12', 'col-sm-12')}>
+                    <ul className={cx('link-list','mt-3', 'mt-md-0')}>
                         {Array(20)
                             .fill()
                             .map((_, index) => (

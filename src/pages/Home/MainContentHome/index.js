@@ -19,15 +19,15 @@ function MainContentHome() {
 
         axios
             .get(`${API_URL}/comics/page/1`)
-            .then((({ data })  => {
-                setComics(data.comics)
-                setTotalPages(data.totalPages)
-            })) // Gán dữ liệu truyện vào state
+            .then(({ data }) => {
+                setComics(data.comics);
+                setTotalPages(data.totalPages);
+            }) // Gán dữ liệu truyện vào state
             .catch((error) => console.error('Có lỗi xảy ra:', error));
     }, []);
 
     return (
-        <div className={cx('main-content-home')}>
+        <div className={cx('main-content-home', 'container')}>
             <div className={cx('main-content-home__title')}>
                 <FontAwesomeIcon icon={faCloudArrowDown} />
                 <h3>Truyện Hay</h3>
@@ -39,9 +39,11 @@ function MainContentHome() {
                             key={index}
                             className={cx(
                                 'comic-item',
-                                'col-6',
-                                'col-md-3',
-                                'col-lg-2',
+                                'col-6', // Trên màn hình cực nhỏ (≤ 576px), mỗi item chiếm nguyên 12 cột (full width)
+                                'col-sm-4', // Trên màn hình nhỏ (≥ 576px), mỗi item chiếm 6 cột (50%)
+                                'col-md-3', // Trên màn hình trung bình (≥ 768px), mỗi item chiếm 4 cột (33.33%)
+                                'col-lg-2', // Trên màn hình lớn (≥ 992px), mỗi item chiếm 3 cột (25%)
+                                'col-xl-2', // Trên màn hình rất lớn (≥ 1200px), mỗi item chiếm 2 cột (16.67%)
                                 'my-2'
                             )}
                         >
@@ -72,7 +74,10 @@ function MainContentHome() {
                 )}
             </ul>
             <div className={cx('next-page')}>
-                <Link to={`/comics/page/${totalPages === 1 ? '1' : '2'}`} className={cx('next-page__btn')}>
+                <Link
+                    to={`/comics/page/${totalPages === 1 ? '1' : '2'}`}
+                    className={cx('next-page__btn')}
+                >
                     Xem thêm nhiều truyện
                 </Link>
             </div>

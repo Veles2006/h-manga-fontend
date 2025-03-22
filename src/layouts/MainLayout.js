@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="vw-100">
       <Header />
       <main>
         <Outlet /> {/* Đây là nơi các `pages` được hiển thị */}
