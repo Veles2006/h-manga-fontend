@@ -7,7 +7,7 @@ const cx = className.bind(styles);
 function Footer() {
     return (
         <footer className={cx('footer')}>
-            <div className={cx('div-middle')}>
+            <div className={cx('div-middle', 'container')}>
                 <div className={cx('left-footer', 'col-lg-6', 'col-md-12', 'col-sm-12')}>
                     <div className={cx('left-footer-logo')}>
                         <img

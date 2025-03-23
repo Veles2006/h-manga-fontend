@@ -35,7 +35,7 @@ li {
     align-items: center;
     color: var(--primary-color);
     font-size: 2rem;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .main-content-home__title h3 {
@@ -48,7 +48,7 @@ li {
     font-size: 1.8rem;
 }
 
-.container.main-content-home {
+.main-content-home {
     
     @include responsive(mobile) {
         padding-left: 10px;

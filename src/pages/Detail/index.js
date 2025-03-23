@@ -56,8 +56,18 @@ function Detail() {
             class: 'menu-btn--green-bg',
             link: `/comics/detail/${slug}/${minNumber}`,
         },
-        { icon: faHeart, text: 'Theo dõi', class: 'menu-btn--danger-bg', link: '#' },
-        { icon: faThumbsUp, text: 'Thích', class: 'menu-btn--violet-bg', link: '#' },
+        {
+            icon: faHeart,
+            text: 'Theo dõi',
+            class: 'menu-btn--danger-bg',
+            link: '#',
+        },
+        {
+            icon: faThumbsUp,
+            text: 'Thích',
+            class: 'menu-btn--violet-bg',
+            link: '#',
+        },
     ];
 
     useEffect(() => {
@@ -93,13 +103,18 @@ function Detail() {
     if (!comic || Object.keys(comic).length === 0) return <p>Đang tải...</p>;
 
     return (
-        <div className={cx('detail-page')}>
+        <div className={cx('detail-page', 'container')}>
             <div className={cx('main-content-wrapper')}>
                 <Breadcrumb title={comic.title} />
                 <div className={cx('main-content')}>
                     <div className={cx('comic-info')}>
-                        <div className={cx('thumbnail')}>
-                            <img src={comic.coverImage} alt="Comic thumbnail" />
+                        <div className={cx('thumbnail-wrapper-mobile')}>
+                            <div className={cx('thumbnail')}>
+                                <img
+                                    src={comic.coverImage}
+                                    alt="Comic thumbnail"
+                                />
+                            </div>
                         </div>
 
                         <div className={cx('info-content')}>
@@ -109,6 +124,8 @@ function Detail() {
                                     <li className={cx('row')} key={key}>
                                         <p
                                             className={cx(
+                                                'col-5',
+                                                'col-sm-5',
                                                 'col-lg-2',
                                                 'p-0',
                                                 'm-0'
@@ -122,6 +139,8 @@ function Detail() {
                                         {key === 'anotherTitle' ? (
                                             <h3
                                                 className={cx(
+                                                    'col-7',
+                                                    'col-sm-7',
                                                     'col-lg-10',
                                                     'p-0',
                                                     'm-0'
@@ -132,6 +151,8 @@ function Detail() {
                                         ) : key === 'author' ? (
                                             <Link
                                                 className={cx(
+                                                    'col-7',
+                                                    'col-sm-7',
                                                     'col-lg-10',
                                                     'p-0',
                                                     'm-0'
@@ -143,6 +164,8 @@ function Detail() {
                                         ) : (
                                             <p
                                                 className={cx(
+                                                    'col-7',
+                                                    'col-sm-7',
                                                     'col-lg-10',
                                                     'p-0',
                                                     'm-0'
@@ -198,14 +221,14 @@ function Detail() {
                                 className={cx('list-chapter__item')}
                                 key={chapter.id}
                             >
-                                <div className={cx('col-lg-10')}>
+                                <div className={cx('col-6', 'col-sm-6', 'col-lg-10')}>
                                     <Link
                                         to={`/comics/detail/${slug}/${chapter.number}`}
                                     >
                                         Chương {chapter.number}
                                     </Link>
                                 </div>
-                                <div className={cx('col-lg-2')}>
+                                <div className={cx('col-6', 'col-sm-6', 'col-lg-2')}>
                                     {chapter.updatedAt}
                                 </div>
                             </div>

@@ -72,7 +72,7 @@ const Comment = ({ detail = false }) => {
 
     return (
         <div
-            className={cx('comment-container-wrapper')}
+            className={cx('comment-container-wrapper', 'container')}
             style={{
                 borderTopLeftRadius: detail ? '0px' : '6px',
                 borderTopRightRadius: detail ? '0px' : '6px',

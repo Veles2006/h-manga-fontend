@@ -23,6 +23,17 @@ function ReadChapter() {
     const [comic, setComic] = useState({});
     const [prevChapter, setPrevChapter] = useState(null);
     const [nextChapter, setNextChapter] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+
+    // Cập nhật khi thay đổi kích thước màn hình
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (!slug || !chapter) return;
@@ -72,7 +83,7 @@ function ReadChapter() {
 
     return (
         <div className={cx('story-container', 'bg-black')}>
-            <div className={cx('box')}>
+            <div className={cx('box', 'container')}>
                 <span className={cx('bread-crumb')}>
                     <Breadcrumb />
                 </span>
@@ -85,7 +96,7 @@ function ReadChapter() {
                     </time>
                 </div>
                 <div className={cx('story-control')}>
-                    <div className={cx('mt-3')}>
+                    <div className={cx('mt-3', 'd-flex','flex-column' ,'justify-content-cent')}>
                         <span className={cx('note-server')}>
                             Nếu không xem được truyện vui lòng đổi "SERVER HÌNH"
                             bên dưới
@@ -125,11 +136,13 @@ function ReadChapter() {
                         </Link>
                     </div>
                     <div className={cx('mt-3', 'alert')}>
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                        <em>
-                            Sử dụng mũi tên trái (←) hoặc phải (→) để chuyển
-                            chapter
-                        </em>
+                        <div className={cx(`${isMobile ? 'd-none' : 'd-block'} `)}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            <em>
+                                Sử dụng mũi tên trái (←) hoặc phải (→) để chuyển
+                                chapter
+                            </em>
+                        </div>
                     </div>
                     <div
                         className={cx(

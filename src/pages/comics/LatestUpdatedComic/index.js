@@ -70,7 +70,7 @@ function LatestUpdatedComic() {
     };
 
     return (
-        <div className={cx('latest-updated-comic')}>
+        <div className={cx('latest-updated-comic', 'container')}>
             <div className={cx('title-page')}>
                 <FontAwesomeIcon icon={faFlag} />
                 <h2>Truyện Mới Cập Nhật</h2>
@@ -78,19 +78,35 @@ function LatestUpdatedComic() {
 
             <div className={cx('filter')}>
                 {filters.map((filter, index) => (
-                    <div key={index} className={cx('filter__box')}>
-                        <div className={cx('filter__box__title')}>
+                    <div key={index} className={cx('filter__box', 'row')}>
+                        <div
+                            className={cx(
+                                'filter__box__title',
+                                'col-3',
+                                'col-sm-3',
+                                'col-lg-1'
+                            )}
+                        >
                             <span>{filter.title}</span>
                         </div>
-                        {filter.options.map((option, i) => (
-                            <button key={i} className={cx('filter__box__btn')}>
-                                {option}
-                            </button>
-                        ))}
+                        <div className={cx('col-9', 'col-sm-9', 'col-lg-11')}>
+                            {filter.options.map((option, i) => (
+                                <button
+                                    key={i}
+                                    className={cx(
+                                        'filter__box__btn',
+                                        'my-2',
+                                        'my-sm-0'
+                                    )}
+                                >
+                                    {option}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
-            <div className={cx('main-content')}>
+            <div className={cx('main-content', 'container', 'my-3')}>
                 <ul className={cx('comic-list', 'row')}>
                     {comics.length > 0 ? (
                         comics.map((comic, index) => (
@@ -98,10 +114,12 @@ function LatestUpdatedComic() {
                                 key={index}
                                 className={cx(
                                     'comic-item',
-                                    'col-6',
-                                    'col-md-3',
-                                    'col-lg-2',
-                                    'my-4'
+                                    'col-6', // Trên màn hình cực nhỏ (≤ 576px), mỗi item chiếm nguyên 12 cột (full width)
+                                    'col-sm-4', // Trên màn hình nhỏ (≥ 576px), mỗi item chiếm 6 cột (50%)
+                                    'col-md-3', // Trên màn hình trung bình (≥ 768px), mỗi item chiếm 4 cột (33.33%)
+                                    'col-lg-2', // Trên màn hình lớn (≥ 992px), mỗi item chiếm 3 cột (25%)
+                                    'col-xl-2', // Trên màn hình rất lớn (≥ 1200px), mỗi item chiếm 2 cột (16.67%)
+                                    'my-2'
                                 )}
                             >
                                 <Link to={`/comics/detail/${comic.slug}`}>

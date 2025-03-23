@@ -30,7 +30,7 @@ function MainContentHome() {
         <div className={cx('main-content-home', 'container')}>
             <div className={cx('main-content-home__title')}>
                 <FontAwesomeIcon icon={faCloudArrowDown} />
-                <h3>Truyện Hay</h3>
+                <h3>Truyện Mới Cập Nhật</h3>
             </div>
             <ul className={cx('comic-list', 'row')}>
                 {comics.length > 0 ? (

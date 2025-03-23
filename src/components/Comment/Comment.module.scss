@@ -1,6 +1,25 @@
+// Định nghĩa breakpoints (Có thể thay đổi nếu cần)
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Mixin để tạo media queries nhanh chóng
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } @else if $breakpoint == tablet {
+        @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    } @else if $breakpoint == desktop {
+        @media (min-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    }
+}
+
 .comment-container-wrapper {
-    width: 1200px;
-    margin: 0 auto;
     padding: 0 31px;
     background: var(--white-color);
     border: 1px solid var(--border-color);
@@ -14,6 +33,11 @@
     border-radius: 6px;
     padding-top: 20px;
     padding-bottom: 40px;
+
+    
+    @include responsive(mobile) {
+        padding: 20px 10px;
+    }
 }
 
 .comment-container__title {

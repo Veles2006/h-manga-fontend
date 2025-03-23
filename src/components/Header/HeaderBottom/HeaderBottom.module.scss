@@ -31,14 +31,14 @@ $breakpoint-tablet: 1024px;
 }
 
 .bar {
+    position: relative;
     display: flex;
     margin: 0;
     padding: 0;
 
     @include responsive(mobile) {
         width: 100%;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         padding: 0 10px;
     }
 }
@@ -49,6 +49,10 @@ $breakpoint-tablet: 1024px;
 
     &:hover {
         background-color: $primary-color;
+    }
+
+    @include responsive(mobile) {
+        line-height: 52px;
     }
 }
 
@@ -69,6 +73,9 @@ $breakpoint-tablet: 1024px;
 }
 
 .bar-btn {
+    position: absolute;
+    top: 12px;
+    right: 10px;
     background: none;
     border: none;
 }
@@ -76,4 +83,12 @@ $breakpoint-tablet: 1024px;
 .bar-btn svg {
     font-size: 2.8rem;
     color: var(--white-color);
+}
+
+.bar-btn__icon svg{
+    font-size: 3rem;
+}
+
+.ranking-list {
+
 }

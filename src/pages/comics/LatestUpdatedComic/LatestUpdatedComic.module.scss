@@ -1,6 +1,25 @@
+// Định nghĩa breakpoints (Có thể thay đổi nếu cần)
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Mixin để tạo media queries nhanh chóng
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } @else if $breakpoint == tablet {
+        @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    } @else if $breakpoint == desktop {
+        @media (min-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    }
+}
+
 .latest-updated-comic {
-    width: 1200px;
-    margin: 0 auto;
     padding: 28px 0;
     height: 100%;
 }
@@ -9,6 +28,11 @@
     display: flex;
     align-items: center;
     color: var(--primary-color);
+    margin-bottom: 20px;
+
+    @include responsive(mobile) {
+        margin-left: 14px;
+    }
 }
 
 .title-page svg {
@@ -17,19 +41,29 @@
 
 .title-page h2 {
     margin-left: 6px;
+    margin-bottom: 0;
+
+    @include responsive(mobile) {
+        font-size: 2rem;
+    }
 }
 
 .filter {
-    padding: 20px;
+    padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 1.4rem;
     color: var(--gray-color);
     font-weight: 300;
+
+    @include responsive(mobile) {
+        margin: 0 14px;
+    }
 }
 
 .filter__box {
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     margin: 8px 0;
 }
@@ -52,6 +86,7 @@
     border-radius: 6px;
     margin-left: 10px;
     text-align: center;
+    background: var(--white-color);
     &.filter__box__btn--active {
         background: var(--primary-color);
         color: var(--white-color);
@@ -59,19 +94,24 @@
 }
 
 .main-content {
+    @include responsive(mobile) {
+        padding: 0 14px;
+    }
 }
 
-.comic-list a{
+.comic-list {
+    padding: 0;
+}
+
+.comic-list a {
     text-decoration: none;
     color: var(--black-color);
-}
-
-.comic-item {
 }
 
 .comic-thumbnail img {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    width: 100%;
     max-width: 180px;
     object-fit: cover;
 }

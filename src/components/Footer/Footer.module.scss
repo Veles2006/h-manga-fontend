@@ -3,15 +3,13 @@
 }
 
 .div-middle {
-    padding: 20px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 10px;
 }
 
 .left-footer {
-    
+    padding-top: 20px;
 }
 
 .left-footer-logo {
@@ -32,7 +30,8 @@
     justify-content: space-between;
     width: 340px;
     height: 130px;
-    background: url('../../../public/img/view.jpg') no-repeat center center / cover;
+    background: url('../../../public/img/view.jpg') no-repeat center center /
+        cover;
     padding: 8px;
     margin-top: 8px;
 }
@@ -65,7 +64,8 @@
     justify-content: space-between;
 }
 
-.follow, .share {
+.follow,
+.share {
     font-size: 1.2rem;
     font-weight: 500;
     background: var(--white-color);
@@ -73,9 +73,9 @@
 }
 
 .right-footer {
-    
     display: flex;
     flex-direction: column;
+    padding: 20px 0;
 }
 
 .link-list {

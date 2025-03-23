@@ -1,3 +1,24 @@
+// Định nghĩa breakpoints (Có thể thay đổi nếu cần)
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Mixin để tạo media queries nhanh chóng
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } @else if $breakpoint == tablet {
+        @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    } @else if $breakpoint == desktop {
+        @media (min-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    }
+}
+
 .detail-page ul,
 .detail-page li {
     padding: 0;
@@ -5,10 +26,8 @@
 }
 
 .detail-page {
-    width: 1200px;
     height: 100%;
     padding: 28px 0;
-    margin: 0 auto;
 }
 
 .main-content-wrapper {
@@ -22,11 +41,25 @@
 .main-content {
     padding: 16px;
     padding-bottom: 0;
+
+    @include responsive(mobile) {
+        padding: 16px 0;
+    }
 }
 
 .comic-info {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.thumbnail-wrapper-mobile {
+    @include responsive(mobile) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
 }
 
 .thumbnail {
@@ -42,6 +75,10 @@
 .thumbnail img {
     height: 100%;
     width: auto;
+
+    @include responsive(mobile) {
+        
+    }
 }
 
 .info-content li,
@@ -52,6 +89,10 @@
 
 .info-content {
     width: calc(100% - 220px);
+
+    @include responsive(mobile) {
+        width: 100%;
+    }
 
     & svg {
         margin-right: 4px;
@@ -81,6 +122,16 @@
         padding-bottom: 10px;
         margin: 0;
     }
+
+    & li h3 {
+        line-height: 3rem;
+    }
+
+    & li {
+        @include responsive(mobile) {
+            margin-bottom: 4px;
+        }
+    }
 }
 
 .categories-list a {
@@ -103,6 +154,7 @@
 
 .comic-menu {
     margin-top: 10px !important;
+    flex-wrap: wrap;
 }
 
 .menu-btn {
